@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Kathkef — 8 meses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --azul-noche: #0B2E45;
+    --azul-profundo: #0E3D5C;
+    --azul-cielo: #4F8FB3;
+    --crema: #F4EFE3;
+    --dorado: #D2A857;
+    --dorado-suave: rgba(210, 168, 87, 0.35);
+    --blanco-roto: #FBF8F1;
+    --texto-claro: #E9EEF2;
+
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(79,143,179,0.25), transparent),
+      linear-gradient(180deg, var(--azul-noche) 0%, var(--azul-profundo) 55%, #0A2738 100%);
+    color: var(--texto-claro);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Estrellas de fondo sutiles */
+  .estrellas{
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+  .estrella{
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--blanco-roto);
+    border-radius: 50%;
+    animation: titilar 4s ease-in-out infinite;
+  }
+  @keyframes titilar{
+    0%, 100%{ opacity: 0.15; }
+    50%{ opacity: 0.9; }
+  }
+
+  main{
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 0 40px;
+  }
+
+  .eyebrow{
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--dorado);
+    margin-bottom: 18px;
+    opacity: 0;
+    animation: aparecer 1s ease forwards 0.2s;
+  }
+
+  .titulo-hero{
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.6rem, 9vw, 4.6rem);
+    line-height: 1.05;
+    color: var(--blanco-roto);
+    opacity: 0;
+    animation: aparecer 1.1s ease forwards 0.4s;
+  }
+  .titulo-hero em{
+    font-style: italic;
+    color: var(--dorado);
+    font-weight: 500;
+  }
+
+  .subtitulo-hero{
+    font-family: var(--sans);
+    font-size: 16px;
+    color: var(--azul-cielo);
+    margin-top: 16px;
+    max-width: 420px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: aparecer 1.1s ease forwards 0.7s;
+  }
+
+  @keyframes aparecer{
+    from{ opacity: 0; transform: translateY(14px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+
+  .flecha-scroll{
+    margin-top: 56px;
+    width: 28px;
+    height: 44px;
+    border: 1.5px solid var(--dorado-suave);
+    border-radius: 14px;
+    position: relative;
+    opacity: 0;
+    animation: aparecer 1s ease forwards 1.1s;
+  }
+  .flecha-scroll::after{
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    width: 4px;
+    height: 8px;
+    background: var(--dorado);
+    border-radius: 2px;
+    transform: translateX(-50%);
+    animation: bajar 1.8s ease-in-out infinite;
+  }
+  @keyframes bajar{
+    0%{ top: 8px; opacity: 1; }
+    70%{ top: 22px; opacity: 0; }
+    100%{ top: 8px; opacity: 0; }
+  }
+
+  /* ===== CONTADOR ===== */
+  .seccion-contador{
+    padding: 70px 0 90px;
+    text-align: center;
+  }
+
+  .titulo-seccion{
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.3rem, 4vw, 1.7rem);
+    color: var(--azul-cielo);
+    margin-bottom: 36px;
+  }
+
+  .contador-numero{
+    font-family: var(--serif);
+    font-size: clamp(4rem, 18vw, 7rem);
+    font-weight: 600;
+    color: var(--dorado);
+    line-height: 1;
+    text-shadow: 0 0 40px var(--dorado-suave);
+  }
+
+  .contador-etiqueta{
+    font-family: var(--sans);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--azul-cielo);
+    margin-top: 8px;
+    margin-bottom: 36px;
+  }
+
+  .desglose{
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .desglose-item{
+    min-width: 78px;
+  }
+  .desglose-numero{
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    color: var(--blanco-roto);
+  }
+  .desglose-texto{
+    font-size: 11px;
+    color: var(--azul-cielo);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-top: 4px;
+  }
+
+  /* Puente CR <-> MX */
+  .puente{
+    margin-top: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--texto-claro);
+    opacity: 0.85;
+  }
+  .punto-pais{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .bandera-mini{
+    font-size: 20px;
+  }
+  .linea-puente{
+    width: 90px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--dorado), var(--azul-cielo));
+    position: relative;
+  }
+  .linea-puente::after{
+    content: '♥';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--dorado);
+    font-size: 12px;
+  }
+
+  /* ===== TARRO ===== */
+  .seccion-tarro{
+    padding: 40px 0 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .tarro-contenedor{
+    position: relative;
+    width: 260px;
+    height: 320px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .tarro-contenedor svg{
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .vidrio{
+    fill: rgba(255,255,255,0.04);
+    stroke: var(--dorado-suave);
+    stroke-width: 1.5;
+  }
+
+  .luciernaga{
+    fill: var(--dorado);
+    opacity: 0.85;
+    animation: flotar 5s ease-in-out infinite;
+    filter: drop-shadow(0 0 4px var(--dorado));
+  }
+  .luciernaga:nth-child(odd){ animation-duration: 6.5s; }
+  @keyframes flotar{
+    0%, 100%{ transform: translateY(0) translateX(0); }
+    33%{ transform: translateY(-14px) translateX(6px); }
+    66%{ transform: translateY(-4px) translateX(-8px); }
+  }
+
+  .tapa-tarro{
+    fill: var(--dorado);
+    opacity: 0.9;
+  }
+
+  .instruccion-tarro{
+    margin-top: 22px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--azul-cielo);
+  }
+
+  .tarro-contenedor.agitando{
+    animation: agitar 0.4s ease;
+  }
+  @keyframes agitar{
+    0%, 100%{ transform: rotate(0); }
+    25%{ transform: rotate(-3deg); }
+    75%{ transform: rotate(3deg); }
+  }
+
+  /* Tarjeta de frase */
+  .tarjeta-frase{
+    margin-top: 40px;
+    max-width: 480px;
+    min-height: 140px;
+    padding: 36px 32px;
+    background: rgba(244, 239, 227, 0.04);
+    border: 1px solid var(--dorado-suave);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .tarjeta-frase.visible{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .texto-frase{
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.15rem, 4vw, 1.5rem);
+    line-height: 1.5;
+    color: var(--blanco-roto);
+  }
+  .texto-frase::before{ content: '“'; color: var(--dorado); }
+  .texto-frase::after{ content: '”'; color: var(--dorado); }
+
+  .contador-frases{
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--azul-cielo);
+    opacity: 0.7;
+  }
+
+  /* ===== GALERÍA DE FOTOS ===== */
+  .seccion-fotos{
+    padding: 20px 0 100px;
+    text-align: center;
+  }
+
+  .galeria{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 36px;
+  }
+  .foto-marco{
+    aspect-ratio: 4/5;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--dorado-suave);
+    background: rgba(255,255,255,0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .foto-marco img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .foto-placeholder{
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 12px;
+    color: var(--azul-cielo);
+    opacity: 0.5;
+    padding: 8px;
+    text-align: center;
+  }
+  .galeria > .foto-marco:nth-child(1),
+  .galeria > .foto-marco:nth-child(5){
+    grid-row: span 2;
+  }
+
+  /* ===== CIERRE ===== */
+  .seccion-cierre{
+    padding: 60px 0 100px;
+    text-align: center;
+  }
+  .firma{
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    color: var(--blanco-roto);
+    line-height: 1.4;
+    margin-bottom: 24px;
+  }
+  .firma .nombre{
+    color: var(--dorado);
+  }
+  .fecha-cierre{
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--azul-cielo);
+    opacity: 0.7;
+  }
+
+  footer{
+    text-align: center;
+    padding: 30px 0;
+    font-size: 11px;
+    color: var(--azul-cielo);
+    opacity: 0.4;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  button:focus-visible, .tarro-contenedor:focus-visible{
+    outline: 2px solid var(--dorado);
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 480px){
+    .galeria{ grid-template-columns: repeat(2, 1fr); }
+    .galeria > .foto-marco:nth-child(1),
+    .galeria > .foto-marco:nth-child(5){ grid-row: span 1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="estrellas" id="estrellas"></div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">8 meses · México 🇲🇽 — Costa Rica 🇨🇷</div>
+    <h1 class="titulo-hero">Para <em>Kathkef</em></h1>
+    <p class="subtitulo-hero">Un tarro de luz que guarda lo que siento, para que lo abras cuando quieras.</p>
+    <div class="flecha-scroll" aria-hidden="true"></div>
+  </section>
+
+  <!-- CONTADOR -->
+  <section class="seccion-contador">
+    <p class="titulo-seccion">El tiempo que el tarro ha estado guardando luz</p>
+    <div class="contador-numero" id="numDias">—</div>
+    <div class="contador-etiqueta">días juntos</div>
+
+    <div class="desglose">
+      <div class="desglose-item">
+        <div class="desglose-numero" id="numMeses">—</div>
+        <div class="desglose-texto">Meses</div>
+      </div>
+      <div class="desglose-item">
+        <div class="desglose-numero" id="numHoras">—</div>
+        <div class="desglose-texto">Horas</div>
+      </div>
+      <div class="desglose-item">
+        <div class="desglose-numero" id="numMin">—</div>
+        <div class="desglose-texto">Minutos</div>
+      </div>
+    </div>
+
+    <div class="puente">
+      <div class="punto-pais">
+        <span class="bandera-mini">🇨🇷</span>
+        <span>Kathkef</span>
+      </div>
+      <div class="linea-puente"></div>
+      <div class="punto-pais">
+        <span class="bandera-mini">🇲🇽</span>
+        <span>Javier</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TARRO -->
+  <section class="seccion-tarro">
+    <p class="titulo-seccion">Toca el tarro y deja salir una luciérnaga</p>
+
+    <div class="tarro-contenedor" id="tarro" role="button" tabindex="0" aria-label="Tocar el tarro para ver una frase">
+      <svg viewBox="0 0 260 320">
+        <!-- Tapa -->
+        <rect class="tapa-tarro" x="95" y="18" width="70" height="26" rx="6"/>
+        <rect class="tapa-tarro" x="88" y="36" width="84" height="14" rx="4"/>
+        <!-- Cuerpo del tarro -->
+        <path class="vidrio" d="M 70 50
+                 Q 60 55 58 80
+                 L 50 230
+                 Q 48 280 90 295
+                 L 170 295
+                 Q 212 280 210 230
+                 L 202 80
+                 Q 200 55 190 50
+                 Z"/>
+        <!-- Luciérnagas -->
+        <circle class="luciernaga" cx="100" cy="120" r="4"/>
+        <circle class="luciernaga" cx="150" cy="160" r="3.5"/>
+        <circle class="luciernaga" cx="120" cy="200" r="4.5"/>
+        <circle class="luciernaga" cx="160" cy="220" r="3"/>
+        <circle class="luciernaga" cx="90" cy="170" r="3.5"/>
+        <circle class="luciernaga" cx="140" cy="100" r="3"/>
+        <circle class="luciernaga" cx="110" cy="250" r="4"/>
+      </svg>
+    </div>
+
+    <p class="instruccion-tarro">Toca para revelar una frase</p>
+
+    <div class="tarjeta-frase" id="tarjetaFrase">
+      <p class="texto-frase" id="textoFrase"></p>
+    </div>
+    <p class="contador-frases" id="contadorFrases"></p>
+  </section>
+
+  <!-- FOTOS -->
+  <section class="seccion-fotos">
+    <p class="titulo-seccion">Nosotros</p>
+    <div class="galeria" id="galeria">
+      <!-- 5 marcos: reemplaza el div .foto-placeholder por <img src="fotos/nombre.jpg" alt="..."> -->
+      <div class="foto-marco"><span class="foto-placeholder">foto 1</span></div>
+      <div class="foto-marco"><span class="foto-placeholder">foto 2</span></div>
+      <div class="foto-marco"><span class="foto-placeholder">foto 3</span></div>
+      <div class="foto-marco"><span class="foto-placeholder">foto 4</span></div>
+      <div class="foto-marco"><span class="foto-placeholder">foto 5</span></div>
+    </div>
+  </section>
+
+  <!-- CIERRE -->
+  <section class="seccion-cierre">
+    <p class="firma">Gracias por elegirme cada día,<br>desde <span class="nombre">Costa Rica</span> hasta <span class="nombre">México</span>.</p>
+    <p class="fecha-cierre">Con todo mi cariño — Javier</p>
+  </section>
+
+</main>
+
+<footer>hecho con cariño para Kathkef</footer>
+
+<script>
+  // ===================== CONFIGURACIÓN =====================
+  // Cambia esta fecha por la fecha exacta en que empezaron (formato: año, mes-1, día)
+  const FECHA_INICIO = new Date(2025, 9, 25); // 25 de octubre 2025 (ajusta si la fecha real es otra)
+
+  // ===================== FRASES =====================
+  const FRASES = [
+    "Contigo aprendí que la distancia no se mide en kilómetros, sino en ganas de estar cerca.",
+    "Eres la razón por la que reviso el teléfono con una sonrisa, sin importar la hora que sea allá o aquí.",
+    "Costa Rica y México están lejos en el mapa, pero tú y yo nunca lo estamos de verdad.",
+    "Hoy, como cada día desde hace 8 meses, elijo amarte un poco más que ayer.",
+    "No necesito tenerte enfrente para sentir que estás aquí conmigo.",
+    "Eres mi lugar favorito, aunque ese lugar esté a varios países de distancia.",
+    "Cada mensaje tuyo es una luciérnaga más dentro de este tarro.",
+    "Gracias por hacer que la espera valga la pena, una llamada a la vez.",
+    "Si pudiera regalarte algo, sería todo el tiempo que pasamos lejos, convertido en tiempo juntos.",
+    "Eres la prueba de que el amor de verdad no entiende de husos horarios.",
+    "Te quiero con la misma certeza con la que sé que mañana voy a pensar en ti.",
+    "8 meses y sigo sin acostumbrarme a lo bonito que es quererte.",
+    "Donde tú estás, ahí quiero estar, sin importar cuántas horas de vuelo nos separen.",
+    "Eres mi persona favorita en cualquier zona horaria.",
+    "Contigo hasta la distancia se siente como un detalle pequeño.",
+    "Mi tarro de frases nunca se va a vaciar, porque nunca dejo de pensar en ti.",
+    "Gracias por elegirnos, incluso cuando elegirnos era lo más difícil.",
+    "Eres mi tica favorita y mi persona favorita, en ese orden no hay competencia.",
+    "Lo que siento por ti no cabe en un tarro, pero aquí va un intento.",
+    "Te amo desde aquí, para que lo sientas allá."
+  ];
+
+  let frasesDisponibles = [...FRASES];
+  let frasesUsadas = 0;
+
+  function siguienteFrase(){
+    if(frasesDisponibles.length === 0){
+      frasesDisponibles = [...FRASES];
+      frasesUsadas = 0;
+    }
+    const idx = Math.floor(Math.random() * frasesDisponibles.length);
+    const frase = frasesDisponibles.splice(idx, 1)[0];
+    frasesUsadas++;
+    return frase;
+  }
+
+  const tarro = document.getElementById('tarro');
+  const tarjeta = document.getElementById('tarjetaFrase');
+  const textoFrase = document.getElementById('textoFrase');
+  const contadorFrases = document.getElementById('contadorFrases');
+
+  function mostrarFrase(){
+    tarro.classList.add('agitando');
+    setTimeout(() => tarro.classList.remove('agitando'), 400);
+
+    tarjeta.classList.remove('visible');
+    setTimeout(() => {
+      textoFrase.textContent = siguienteFrase();
+      tarjeta.classList.add('visible');
+      contadorFrases.textContent = `Luciérnaga ${frasesUsadas} de ${FRASES.length}`;
+    }, 250);
+  }
+
+  tarro.addEventListener('click', mostrarFrase);
+  tarro.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      mostrarFrase();
+    }
+  });
+
+  // ===================== CONTADOR DE TIEMPO =====================
+  function actualizarContador(){
+    const ahora = new Date();
+    const diffMs = ahora - FECHA_INICIO;
+
+    const dias = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
+    const minutos = Math.floor((diffMs / (1000 * 60)) % 60);
+    const meses = Math.floor(dias / 30.44);
+
+    document.getElementById('numDias').textContent = dias.toLocaleString('es-MX');
+    document.getElementById('numMeses').textContent = meses;
+    document.getElementById('numHoras').textContent = horas;
+    document.getElementById('numMin').textContent = minutos;
+  }
+
+  actualizarContador();
+  setInterval(actualizarContador, 60000);
+
+  // ===================== ESTRELLAS DE FONDO =====================
+  function crearEstrellas(){
+    const contenedor = document.getElementById('estrellas');
+    const cantidad = 60;
+    for(let i = 0; i < cantidad; i++){
+      const estrella = document.createElement('div');
+      estrella.className = 'estrella';
+      estrella.style.left = Math.random() * 100 + '%';
+      estrella.style.top = Math.random() * 100 + '%';
+      estrella.style.animationDelay = Math.random() * 4 + 's';
+      contenedor.appendChild(estrella);
+    }
+  }
+  crearEstrellas();
+</script>
+
+</body>
+</html>
